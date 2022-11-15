@@ -19,6 +19,7 @@ node {
                         sh "sed -i 's+rla8127/test.*+rla8127/test:${DOCKERTAG}+g' deployment.yaml"
                         sh "cat deployment.yaml"
                         sh "git add ."
+                        sh "git checkout ${BRANCH_NAME}"
                         sh "git commit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
                         sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/kubernetesmanifest.git HEAD:main"
       }
